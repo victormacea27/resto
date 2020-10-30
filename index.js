@@ -145,7 +145,7 @@ app.put('/modificarProducto',validaciones.ValidarModificarProducto, validaciones
     }
  });
 
- //borrar producto
+ //Eliminar producto
  app.delete('/eliminarProducto',validaciones.validarId, validaciones.validarToken,validaciones.validarAdmin, async(req,res)=>{
     console.log(req.query.id);
     const producto = await queryProductos.BuscarProductoID(req.query.id);
