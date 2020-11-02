@@ -145,7 +145,7 @@ app.put('/modificarProducto',validaciones.ValidarModificarProducto, validaciones
     }
  });
 
- //Eliminar producto
+//Eliminar producto
  app.delete('/eliminarProducto',validaciones.validarId, validaciones.validarToken,validaciones.validarAdmin, async(req,res)=>{
     console.log(req.query.id);
     const producto = await queryProductos.BuscarProductoID(req.query.id);
@@ -163,7 +163,7 @@ app.put('/modificarProducto',validaciones.ValidarModificarProducto, validaciones
     }else{
         return res.status(404).json({ error: 'El producto no existe, valida el id' });
     }
- });
+});
 
 //////////////////////////////////////////////// Pedidos  ///////////////////////////////
 //Buscar todos los pedidos
@@ -237,6 +237,28 @@ app.post('/pedidoNuevo', validaciones.validarToken, async(req,res)=>{
     res.status(500).json({ error: error.message });
     }
 });
+
+
+//Eliminar producto
+app.delete('/eliminarPedido',validaciones.validarId, validaciones.validarToken,validaciones.validarAdmin, async(req,res)=>{
+    const pedidoExiste = await queryPedidos.BuscarPedidoPorId(req.query.id);
+    if (pedidoExiste.length) {
+    const pedidoEliminado = await queryPedidos.EliminarPedidoPorId(req.query.id);
+    console.log('paso por aqui');
+        sequelize.query("DELETE FROM resto.pedidos WHERE  id = ?;",
+        {
+            replacements:[req.query.id],
+            type: sequelize.QueryTypes.DELETE
+        }).then(result =>{
+            res.status(200).json('id del pedido eliminado: ' + req.query.id);
+        }).catch(err=>{
+            res.status(500).json(err);
+        })
+    }else{
+        return res.status(404).json({ error: 'El pedido no existe, valida el id' });
+    }
+});
+
 
 app.listen(8000,()=>{
     console.log('servidor corriendo')

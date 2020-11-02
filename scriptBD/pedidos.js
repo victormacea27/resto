@@ -57,10 +57,19 @@ const crearDetalleOrden = async (id_pedido, productos) =>{
     }
 };
 
+const EliminarPedidoPorId = async (id) => {
+    console.log('EliminarPedidoPorId'); 
+    return await sequelize.query(`DELETE FROM resto.detalles_pedidos WHERE id_pedido = "${id}";`,
+    {
+        type: sequelize.QueryTypes.DELETE
+    });
+};
+
 module.exports = {
     CrearPedidoDetalle,
     CrearPedido,
     validarProductosDetalles,
     crearDetalleOrden,
-    BuscarPedidoPorId
+    BuscarPedidoPorId,
+    EliminarPedidoPorId
 };
