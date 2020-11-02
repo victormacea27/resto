@@ -20,7 +20,7 @@ const CrearPedidoDetalle = async (detalleOrden) => {
 
 const CrearPedido = async (id_usuario,id_tipopago) => {
     //console.log(usuario);
-    return await sequelize.query(`INSERT INTO resto.pedidos (id_estado,id_usuario,id_tipopago,pago_total,fecha) VALUES(1,"${id_usuario}","${id_tipopago}",0,(select now()))`,
+    return await sequelize.query(`INSERT INTO resto.pedidos (id_estado,id_usuario,id_tipopago,fecha) VALUES(1,"${id_usuario}","${id_tipopago}",(select now()))`,
     {
         type: sequelize.QueryTypes.INSERT
     });

@@ -220,7 +220,7 @@ app.get('/pedidos',validaciones.validarToken, async (req,res)=>{
     }
  });
 
-app.post('/pedidoNuevo', validaciones.validarToken,validaciones.validarAdmin, async(req,res)=>{
+app.post('/pedidoNuevo', validaciones.validarToken, async(req,res)=>{
     try{
         const ValidarProductos = await queryPedidos.validarProductosDetalles(req.body.productos);
         //Si no existe un producto reportar error
