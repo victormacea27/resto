@@ -239,7 +239,7 @@ app.post('/pedidoNuevo', validaciones.validarToken, async(req,res)=>{
 });
 
 
-//Eliminar producto
+//Eliminar pedido
 app.delete('/eliminarPedido',validaciones.validarId, validaciones.validarToken,validaciones.validarAdmin, async(req,res)=>{
     const pedidoExiste = await queryPedidos.BuscarPedidoPorId(req.query.id);
     if (pedidoExiste.length) {

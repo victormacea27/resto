@@ -219,7 +219,35 @@ paths:
             items:
              $ref: "#/definitions/Pedido"
         "500":
-          description: "Error interno del servidor"  
+          description: "Error interno del servidor"
+  /eliminarpedidos:
+    delete:
+      tags:
+      - "Pedidos"
+      summary: "Eliminar un pedido"
+      description: "Se requiere enviar token de autorización en Authorization o en los headers de postman y se requiere el id del producto para la eliminación"
+      operationId: "eliminarPedido"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+        - name: "token Bearer"
+          in: "header"
+          required: true
+          type: "string"
+        - in: "query"
+          name: "id"
+          required: true
+          type: "integer"
+          description: "ID que identifica el pedido a eliminar"
+      responses:
+        "200":
+          description: "id del pedido eliminado:"
+        "404":
+          description: "El pedido no existe, valida el id"
+        "500":
+          description: "Error interno del servidor"
   /crearUsuario:
     post:
       tags:

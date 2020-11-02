@@ -62,3 +62,6 @@ URL: http://localhost:8000/modificarPedido?id_pedido=
 
 Metodo: POST
 URL: http://localhost:8000/pedidoNuevo
+
+Metodo: DELETE
+URL: http://localhost:8000/eliminarPedido?id=
